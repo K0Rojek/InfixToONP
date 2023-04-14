@@ -14,7 +14,7 @@ public class infToONP {
 
     public static String converseInfixToPostfix(String equation) {
         String[] stringStack = new String[10];
-        int stackTop = -1;
+        int stringStackTop = -1;
         StringBuilder postfixOutput = new StringBuilder();
         int equationLength = equation.length();
         for (int i = 0; i < equationLength; i++) {
@@ -27,31 +27,29 @@ public class infToONP {
                 }
                 postfixOutput.append(number).append(" ");
             } else if (character == '(') {
-                stackTop++;
-                stringStack[stackTop] = String.valueOf(character);
+                stringStackTop++;
+                stringStack[stringStackTop] = String.valueOf(character);
             } else if (character == ')') {
-                while (stackTop >= 0 && !stringStack[stackTop].equals("(")) {
-                    postfixOutput.append(stringStack[stackTop]).append(" ");
-                    stackTop--;
+                while (stringStackTop >= 0 && !stringStack[stringStackTop].equals("(")) {
+                    postfixOutput.append(stringStack[stringStackTop]).append(" ");
+                    stringStackTop--;
                 }
-                stackTop--; // Pop the "(" from the stack
+                stringStackTop--; // Pop the "(" from the stack
             } else if (character == '=') {
-                while (stackTop >= 0) {
-                    postfixOutput.append(stringStack[stackTop]).append(" ");
-                    stackTop--;
+                while (stringStackTop >= 0) {
+                    postfixOutput.append(stringStack[stringStackTop]).append(" ");
+                    stringStackTop--;
                 }
                 postfixOutput.append("=");
             } else if (character == '+' || character == '-' || character == '*' || character == '/' || character == '%' || character == '^') {
-//                postfixOutput = postfixOutput + " ";
-                while (stackTop >= 0 && getPriorityONP(character) <= getPriorityONP(stringStack[stackTop].charAt(0))) {
-                    postfixOutput.append(stringStack[stackTop]).append(" ");
-                    stackTop--;
+                while (stringStackTop >= 0 && getPriorityONP(character) <= getPriorityONP(stringStack[stringStackTop].charAt(0))) {
+                    postfixOutput.append(stringStack[stringStackTop]).append(" ");
+                    stringStackTop--;
                 }
-                stackTop++;
-                stringStack[stackTop] = String.valueOf(character);
+                stringStackTop++;
+                stringStack[stringStackTop] = String.valueOf(character);
             }
         }
-
         return postfixOutput.toString();
     }
 }
