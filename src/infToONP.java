@@ -15,31 +15,36 @@ public class infToONP {
     public static String converseInfixToPostfix(String equation) {
         String[] stringStack = new String[10];
         int stackTop = -1;
-        String postfixOutput;
-        postfixOutput = "";
-        for (int i = 0; i < equation.length(); i++) {
+        String postfixOutput = "";
+        int equationLength = equation.length();
+        for (int i = 0; i < equationLength; i++) {
             char c = equation.charAt(i);
             if (Character.isDigit(c)) {
-                postfixOutput = postfixOutput + c;
+                String number = "" + c;
+                while (i + 1 < equationLength && Character.isDigit(equation.charAt(i + 1))) {
+                    number = number + equation.charAt(i + 1);
+                    i++;
+                }
+                postfixOutput = postfixOutput + number + " ";
             } else if (c == '(') {
                 stackTop++;
                 stringStack[stackTop] = String.valueOf(c);
             } else if (c == ')') {
                 while (stackTop >= 0 && !stringStack[stackTop].equals("(")) {
-                    postfixOutput = postfixOutput + stringStack[stackTop];
+                    postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 stackTop--; // Pop the "(" from the stack
             } else if (c == '=') {
                 while (stackTop >= 0) {
-                    postfixOutput = postfixOutput + stringStack[stackTop];
+                    postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 postfixOutput = postfixOutput + "=";
             } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '^') {
-                postfixOutput = postfixOutput + " ";
+//                postfixOutput = postfixOutput + " ";
                 while (stackTop >= 0 && getPriorityONP(c) <= getPriorityONP(stringStack[stackTop].charAt(0))) {
-                    postfixOutput = postfixOutput + stringStack[stackTop];
+                    postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 stackTop++;
