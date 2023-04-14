@@ -18,40 +18,44 @@ public class infToONP {
         String postfixOutput = "";
         int equationLength = equation.length();
         for (int i = 0; i < equationLength; i++) {
-            char c = equation.charAt(i);
-            if (Character.isDigit(c)) {
-                String number = "" + c;
+            char character = equation.charAt(i);
+            if (Character.isDigit(character)) {
+                String number = "" + character;
                 while (i + 1 < equationLength && Character.isDigit(equation.charAt(i + 1))) {
                     number = number + equation.charAt(i + 1);
                     i++;
                 }
                 postfixOutput = postfixOutput + number + " ";
-            } else if (c == '(') {
+            } else if (character == '(') {
                 stackTop++;
-                stringStack[stackTop] = String.valueOf(c);
-            } else if (c == ')') {
+                stringStack[stackTop] = String.valueOf(character);
+            } else if (character == ')') {
                 while (stackTop >= 0 && !stringStack[stackTop].equals("(")) {
                     postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 stackTop--; // Pop the "(" from the stack
-            } else if (c == '=') {
+            } else if (character == '=') {
                 while (stackTop >= 0) {
                     postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 postfixOutput = postfixOutput + "=";
-            } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '^') {
+            } else if (character == '+' || character == '-' || character == '*' || character == '/' || character == '%' || character == '^') {
 //                postfixOutput = postfixOutput + " ";
-                while (stackTop >= 0 && getPriorityONP(c) <= getPriorityONP(stringStack[stackTop].charAt(0))) {
+                while (stackTop >= 0 && getPriorityONP(character) <= getPriorityONP(stringStack[stackTop].charAt(0))) {
                     postfixOutput = postfixOutput + stringStack[stackTop] + " ";
                     stackTop--;
                 }
                 stackTop++;
-                stringStack[stackTop] = String.valueOf(c);
+                stringStack[stackTop] = String.valueOf(character);
             }
         }
 
         return postfixOutput;
     }
+//    public static double calculateONP(String equasionInONP){
+//
+//    }
+
 }
