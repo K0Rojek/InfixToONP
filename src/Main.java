@@ -4,9 +4,9 @@ public class Main {
             String input = args[i];
             String inputInONP = infToONP.converseInfixToPostfix(input);
             double result = calculatorONP.equationSolver(inputInONP);
-            System.out.println("Input " + i + ": \"" + input + "\"");
-            System.out.println("Input in ONP " + i + ": " + inputInONP);
-            System.out.println("Result " + i + ": " + result);
+            System.out.println("Input " + (i + 1) + ": \"" + input + "\"");
+            System.out.println("Input in ONP " + (i + 1) + ": " + inputInONP);
+            System.out.println("Result " + (i + 1) + ": " + result);
             System.out.println();
         }
 
