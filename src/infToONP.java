@@ -20,7 +20,8 @@ public class infToONP {
         for (int i = 0; i < equationLength; i++) {
             char character = equation.charAt(i);
             if (Character.isDigit(character)) {
-                StringBuilder number = new StringBuilder("" + character);
+                StringBuilder number = new StringBuilder();
+                number.append(character);
                 while (i + 1 < equationLength && Character.isDigit(equation.charAt(i + 1))) {
                     number.append(equation.charAt(i + 1));
                     i++;
@@ -52,5 +53,6 @@ public class infToONP {
         }
         return postfixOutput.toString();
     }
+    //to do: postfix to infix conversion
 }
 
