@@ -1,4 +1,4 @@
-public class infToONP {
+public class infixToONP {
     public static int getPriorityONP(char operator) {
         switch (operator) {
             case '+', '-':
