@@ -3,6 +3,8 @@ public class Main {
         String input =  "(15-3)^(3+2)*6/3=";
         String output = infToONP.converseInfixToPostfix(input);
         System.out.println(output);
+        double result = calculatorONP.equationSolver(output);
+        System.out.println(result);
     }
 }
 
