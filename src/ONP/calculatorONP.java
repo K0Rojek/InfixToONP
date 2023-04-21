@@ -4,6 +4,13 @@ import java.lang.Math;
 
 public class calculatorONP {
 
+    /**
+     * This function performs a binary operation on two arguments based on the provided operator.
+     * @param argument1 The first operand of the binary operation.
+     * @param argument2 The second operand of the binary operation.
+     * @param operator  The operator to be applied on the operands.
+     * @return  The result of the binary operation.
+     */
     public static double twoArgumentOperationsCalculator(double argument1, double argument2, char operator) {
         switch (operator) {
             case '+':
