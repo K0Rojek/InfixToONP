@@ -1,4 +1,11 @@
+package ONP;
+
 public class infixToONP {
+    /**
+     * Returns the priority of an operator in an expression written in Reverse Polish Notation (ONP)
+     * @param operator  the operator whose priority needs to be determined
+     * @return  an integer value representing the priority of the given operator in the RPN expression
+     */
     public static int getPriorityONP(char operator) {
         switch (operator) {
             case '+', '-':
@@ -12,6 +19,11 @@ public class infixToONP {
         }
     }
 
+    /**
+     * Converts an infix notation equation to a postfix notation equation.
+     * @param equation  the equation to be converted in infix notation
+     * @return  the converted equation in postfix notation
+     */
     public static String converseInfixToPostfix(String equation) {
         String[] stringStack = new String[10];
         int stringStackTop = -1;
