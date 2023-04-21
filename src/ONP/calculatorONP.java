@@ -29,6 +29,12 @@ public class calculatorONP {
                 return 0.0;
         }
     }
+
+    /**
+     * Solves an equation in ONP (Reverse Polish Notation) format by iterating through the equation string performing operations and pushing the results onto a stack.
+     * @param equationInONP the equation in Reverse Polish Notation format to solve.
+     * @return  the result of the equation after all operations have been performed.
+     */
     public static double equationSolver(String equationInONP) {
         String[] stringStack = new String[10];
         int stringStackTop = -1;
