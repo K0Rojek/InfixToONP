@@ -34,7 +34,7 @@ public class infixToONP {
             if (Character.isDigit(character)) {
                 StringBuilder number = new StringBuilder();
                 number.append(character);
-                while (i + 1 < equationLength && Character.isDigit(equation.charAt(i + 1))) {
+                while (i + 1 < equationLength && (Character.isDigit(equation.charAt(i + 1)) || equation.charAt(i + 1) == '.')) {
                     number.append(equation.charAt(i + 1));
                     i++;
                 }
@@ -65,6 +65,33 @@ public class infixToONP {
         }
         return postfixOutput.toString();
     }
-    //to do: postfix to infix conversion
+    public static String conversePostfixToInfix(String postfixEquation) {
+        String[] stringStack = new String[10];
+        int stringStackTop = -1;
+        int equationLength = postfixEquation.length();
+        for (int i = 0; i < equationLength; i++) {
+            char character = postfixEquation.charAt(i);
+            if (Character.isDigit(character)) {
+                StringBuilder number = new StringBuilder();
+                number.append(character);
+                while (i + 1 < equationLength && (Character.isDigit(postfixEquation.charAt(i + 1)) || postfixEquation.charAt(i + 1) == '.')) {
+                    number.append(postfixEquation.charAt(i + 1));
+                    i++;
+                }
+                stringStackTop++;
+                stringStack[stringStackTop] = number.toString();
+            } else if (character == '+' || character == '-' || character == '*' || character == '/' || character == '%' || character == '^') {
+                String operand2 = stringStack[stringStackTop];
+                stringStackTop--;
+                String operand1 = stringStack[stringStackTop];
+                stringStackTop--;
+                String infixExpression = "(" + operand1 + " " + character + " " + operand2 + ")";
+                stringStackTop++;
+                stringStack[stringStackTop] = infixExpression;
+            }
+        }
+        return stringStack[stringStackTop];
+    }
+
 }
 
