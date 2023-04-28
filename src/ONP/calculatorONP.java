@@ -62,4 +62,5 @@ public class calculatorONP {
         }
         return Double.parseDouble(stringStack[0]);
     }
+    //to do: enhance documentation, minor fixes
 }
